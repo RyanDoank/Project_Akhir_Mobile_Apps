@@ -13,12 +13,13 @@ class ListPage extends StatefulWidget {
 
 class _ListPageState extends State<ListPage> {
   UserResponseModel? _userlist;
+  // VoidCallback? get onTap => _onTap;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       // do something
       print("Call API User");
       var userservice = await UserService().getUser();
@@ -32,12 +33,24 @@ class _ListPageState extends State<ListPage> {
       );
     });
   }
+   void showVehiclePage(BuildContext context, Vehicle vehicle) {
+    Navigator.push(
+        context,
+        MaterialPageRoute<Null>(
+            builder: (BuildContext context) => DetailPage(vehicle, judul: "null",)));
+  }
 
   // void _onTodoItemPressed(int index) {
   //   setState(() {
   //     _userlist!.results[index] = _userlist!.results[index];
   //   });
   // }
+
+//   set onTap(VoidCallback? value) {
+//   _addArgumentlessAction(SemanticsAction.tap, value!);
+//   _onTap = value;
+// }
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +69,19 @@ class _ListPageState extends State<ListPage> {
           subtitle:
               _userlist != null ? _userlist!.results[index].email : "picture",
           ontap: () {
+            showVehiclePage(
+                                  context, _userlist!.results[index]);
             // _onTodoItemPressed(index);
 
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DetailPage("hh", judul: "null",),
-              ),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => DetailPage(
+            //       "hh",
+            //       judul: "null",
+            //     ),
+            //   ),
+            // );
           },
         ),
         separatorBuilder: (context, index) => SizedBox(
@@ -73,4 +91,10 @@ class _ListPageState extends State<ListPage> {
       ),
     );
   }
+}
+
+
+class Vehicles {
+  List<> UserResponseModel;
+  Vehicles({this.});
 }
