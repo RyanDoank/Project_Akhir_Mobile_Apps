@@ -5,8 +5,8 @@ import 'package:project_akhir_mobile_apps/home.dart';
 import 'package:project_akhir_mobile_apps/ui/widget/button_image.dart';
 
 class ListGambar extends StatelessWidget {
-  final VoidCallback press;
-  const ListGambar({required this.press});
+  // final VoidCallback press;
+  const ListGambar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class ListGambar extends StatelessWidget {
                   btnimg:
                       'https://id-live-01.slatic.net/p/f2fe51a9d07b5c05815f2614082ac716.jpg',
                   chapter: "100",
-                  press: press,
+                  press: (){},
                 ),
               ),
             ),

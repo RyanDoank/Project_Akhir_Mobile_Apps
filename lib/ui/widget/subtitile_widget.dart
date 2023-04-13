@@ -12,7 +12,7 @@ class SubtitleSection extends StatelessWidget {
       child: Text(
         subtitle,
         style: TextStyle(
-          fontSize: 13,
+          fontSize: 15,
         ),
       ),
     );

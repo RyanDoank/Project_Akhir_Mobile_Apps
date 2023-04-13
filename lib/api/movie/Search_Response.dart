@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:project_akhir_mobile_apps/api/Search_Response_Model.dart';
+import 'package:project_akhir_mobile_apps/api/movie/Search_Response_Model.dart';
 
 class SearchResponse {
   Future<SearchResponseModel> getUser() async {

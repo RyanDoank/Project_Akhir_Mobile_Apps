@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'card_box_header2.dart';
 
 class DescSection extends StatelessWidget {
-  final String title;
-  final Color color1;
-  final Color color2;
+  final String judul;
+  // final Color color1;
+  // final Color color2;
   // const TitleWidget({super.key});
-  const DescSection(this.title,this.color1,this.color2);
-   
+  const DescSection({required this.judul});
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +15,17 @@ class DescSection extends StatelessWidget {
         flex: 1,
         child: Container(
           decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            this.color1,
-            this.color2
-          ])),
+              // gradient: LinearGradient(
+              //   colors: [this.color1, this.color2],
+              // ),
+              ),
           //margin: EdgeInsets.all(5),
           child: Container(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
             child: ListView(
               children: <Widget>[
                 CardBoxHeader2(
-                  text: "Title",
+                  text: judul,
                   colorBox: Colors.orange,
                   colorFont: Colors.orange,
                   font_Size: 25,

@@ -9,14 +9,14 @@ class HeaderHome extends StatelessWidget {
     return AppBar(
       elevation: 0,
       leading: Center(
-        child: IconButton(
-          onPressed: () {
-            print("back to page");
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => DetailPage()));
-          },
-          icon: Icon(Icons.person),
-        ),
+        // child: IconButton(
+        //   onPressed: () {
+        //     print("back to page");
+        //     Navigator.push(
+        //         context, MaterialPageRoute(builder: (context) => DetailPage("jh")));
+        //   },
+        //   icon: Icon(Icons.person),
+        // ),
       ),
     );
   }

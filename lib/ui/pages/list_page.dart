@@ -1,48 +1,75 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:project_akhir_mobile_apps/api/Search_Response_Model.dart';
+import 'package:project_akhir_mobile_apps/api/user/user_model.dart';
+import 'package:project_akhir_mobile_apps/api/user/user_service.dart';
+import 'package:project_akhir_mobile_apps/ui/pages/detail_page.dart';
 import 'package:project_akhir_mobile_apps/ui/widget/elevated_card.dart';
-import 'package:project_akhir_mobile_apps/ui/widget/list_image.dart';
-import 'package:project_akhir_mobile_apps/ui/widget/title_widget.dart';
 
 class ListPage extends StatefulWidget {
-  const ListPage({super.key});
+  ListPage({super.key});
 
   @override
   State<ListPage> createState() => _ListPageState();
 }
 
 class _ListPageState extends State<ListPage> {
-  SearchResponseModel? _data;
+  UserResponseModel? _userlist;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+      // do something
+      print("Call API User");
+      var userservice = await UserService().getUser();
+      setState(() {
+        _userlist = userservice;
+      });
+      print(
+        _userlist != null
+            ? _userlist!.results[0].name.first
+            : "Failed Call API",
+      );
+    });
+  }
+
+  // void _onTodoItemPressed(int index) {
+  //   setState(() {
+  //     _userlist!.results[index] = _userlist!.results[index];
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: List.generate(
-            10,
-            (index) => Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: ElevatedCard(
-                imagePath:
-                    'https://id-live-01.slatic.net/p/f2fe51a9d07b5c05815f2614082ac716.jpg',
-                title: "conan",
-                subtitle: "dectaktif",
-                press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ListGambar(
-                        press: () {},
-                      ),
-                    ),
-                  );
-                },
+      child: ListView.separated(
+        itemBuilder: (BuildContext context, int index) => ElevatedCard(
+          imagePath:
+              // _userlist != null
+              //     ? _userlist!.results[index].picture.large
+              //     :
+              "https://m.media-amazon.com/images/M/MV5BZmMxNGE0YjEtYTVkMC00ZGVjLWI3OTEtODY0N2I0NGU0ZjQ0XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg",
+          // _userlist!.results.first.picture.large,
+          title: _userlist != null
+              ? _userlist!.results[index].name.first
+              : "picture",
+          subtitle:
+              _userlist != null ? _userlist!.results[index].email : "picture",
+          ontap: () {
+            // _onTodoItemPressed(index);
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailPage("hh", judul: "null",),
               ),
-            ),
-          ),
+            );
+          },
         ),
+        separatorBuilder: (context, index) => SizedBox(
+          height: 10,
+        ),
+        itemCount: _userlist!.results.length,
       ),
     );
   }

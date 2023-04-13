@@ -17,14 +17,14 @@ class _DashboardPageState extends State<DashboardPage> {
       appBar: AppBar(
           elevation: 0,
           leading: Center(
-            child: IconButton(
-              onPressed: () {
-                print("back to page");
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DetailPage()));
-              },
-              icon: Icon(Icons.person),
-            ),
+            // child: IconButton(
+            //   onPressed: () {
+            //     print("back to page");
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (context) => DetailPage("hgh")));
+            //   },
+            //   icon: Icon(Icons.person),
+            // ),
           )),
       body: BodyHome(),
     );

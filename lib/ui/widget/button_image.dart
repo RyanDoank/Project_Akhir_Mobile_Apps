@@ -13,7 +13,7 @@ class ButtonImg extends StatelessWidget {
       child: Column(
         children: <Widget>[
           OutlinedButton(
-              onPressed: press,
+              onPressed: (){},//press,
               style: OutlinedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),

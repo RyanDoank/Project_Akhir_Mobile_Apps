@@ -9,7 +9,7 @@ class Description extends StatelessWidget {
     return Container(
       child: Text(
         description,
-        style: TextStyle(fontSize: 12),
+        style: TextStyle(fontSize: 15),
       ),
     );
   }
