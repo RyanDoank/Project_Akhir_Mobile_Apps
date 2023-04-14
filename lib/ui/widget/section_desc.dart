@@ -4,10 +4,7 @@ import 'card_box_header2.dart';
 
 class DescSection extends StatelessWidget {
   final String judul;
-  // final Color color1;
-  // final Color color2;
-  // const TitleWidget({super.key});
-  const DescSection( {required this.judul});
+  const DescSection({required this.judul});
 
   @override
   Widget build(BuildContext context) {
