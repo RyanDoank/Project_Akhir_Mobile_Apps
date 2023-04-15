@@ -54,28 +54,36 @@ class DetailPage extends StatelessWidget {
               ),
             ),
             Container(
-              margin: const EdgeInsets.all(10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
+              margin: const EdgeInsets.only(left: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Text(moviesdetail.originalTitle),
                 ],
               ),
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
+            Container(
+              margin: EdgeInsets.only(left: 10),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: List.generate(
-                  moviesdetail.genreIds.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: ButtonSection(
-                      buttonsection: moviesdetail.genreIds[index].toString(),
-                      press: () {},
+                children: [
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(
+                        moviesdetail.genreIds.length,
+                        (index) => Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: ButtonSection(
+                            buttonsection:
+                                moviesdetail.genreIds[index].toString(),
+                            press: () {},
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
             Container(
