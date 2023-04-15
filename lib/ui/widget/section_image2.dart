@@ -3,14 +3,15 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:image_network/image_network.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-class ImageSection extends StatelessWidget {
+class ImageSection2 extends StatelessWidget {
   final String imagePath;
-  const ImageSection(this.imagePath);
+  const ImageSection2(this.imagePath);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 10),
+      margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+      // margin: EdgeInsets.all(10),
       // width: 200, // This will take 20% of the screen's width
       // height: 300, // This will take 30.5% of the screen's height
       // child: ImageNetwork(
@@ -50,7 +51,7 @@ class ImageSection extends StatelessWidget {
         "https://image.tmdb.org/t/p/original/" +
             imagePath, // this image doesn't exist
         fit: BoxFit.fitHeight,
-        width: 50,
+        width: 150,
         // errorBuilder: (context, error, stackTrace) {
         //   return Container(
         //     color: Colors.amber,

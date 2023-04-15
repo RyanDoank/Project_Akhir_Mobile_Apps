@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_akhir_mobile_apps/home.dart';
+import 'package:project_akhir_mobile_apps/ui/pages/list_page.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return ResponsiveSizer(
       builder: (context, orientation, screenType) {
         return MaterialApp(
-          home: Home(),
+          home: ListPage(),
         );
       },
     );

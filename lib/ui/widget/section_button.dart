@@ -30,7 +30,6 @@ class ButtonSection extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
             ),
-            
           )
         ],
       ),

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'card_box_header2.dart';
+import 'card_box.dart';
 
 class DescSection extends StatelessWidget {
-  final String judul;
-  const DescSection({required this.judul});
+  final String title, releasedate, language, voteaverage;
+  const DescSection({
+    required this.title,
+    required this.releasedate,
+    required this.language,
+    required this.voteaverage,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,33 +26,37 @@ class DescSection extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
             child: ListView(
               children: <Widget>[
-                CardBoxHeader2(
-                  text: judul,
-                  colorBox: Colors.orange,
-                  colorFont: Colors.orange,
+                CardBox(
+                  textHeader: "Title",
+                  textDetail: title,
+                  colorBox: Colors.grey,
+                  colorFont: Colors.white,
                   font_Size: 25,
                   font_weight: FontWeight.bold,
                 ),
-                CardBoxHeader2(
-                  text: "subTitle1",
-                  colorBox: Colors.green.shade700,
+                CardBox(
+                  textHeader: "language",
+                  textDetail: language,
+                  colorBox: Colors.grey,
                   colorFont: Colors.white,
-                  font_Size: 20,
-                  font_weight: FontWeight.normal,
+                  font_Size: 25,
+                  font_weight: FontWeight.bold,
                 ),
-                CardBoxHeader2(
-                  text: "Title2",
-                  colorBox: Colors.green.shade700,
+                CardBox(
+                  textHeader: "release date",
+                  textDetail: releasedate,
+                  colorBox: Colors.grey,
                   colorFont: Colors.white,
-                  font_Size: 8,
-                  font_weight: FontWeight.normal,
+                  font_Size: 25,
+                  font_weight: FontWeight.bold,
                 ),
-                CardBoxHeader2(
-                  text: "subTitle2",
-                  colorBox: Colors.green.shade700,
+                CardBox(
+                  textHeader: "vote average",
+                  textDetail: voteaverage,
+                  colorBox: Colors.grey,
                   colorFont: Colors.white,
-                  font_Size: 20,
-                  font_weight: FontWeight.normal,
+                  font_Size: 25,
+                  font_weight: FontWeight.bold,
                 ),
               ],
             ),

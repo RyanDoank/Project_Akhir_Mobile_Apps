@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:project_akhir_mobile_apps/ui/widget/description_widget.dart';
 import 'package:project_akhir_mobile_apps/ui/widget/section_image.dart';
-import 'package:project_akhir_mobile_apps/ui/widget/subtitile_widget.dart';
+import 'package:project_akhir_mobile_apps/ui/widget/Section_Release.dart';
 import 'package:project_akhir_mobile_apps/ui/widget/title_widget.dart';
 
 class TitleDetail extends StatelessWidget {
   final String title;
-  final String subtitle;
+  final String apirelease;
   final String description;
   final String imagePath;
   const TitleDetail(
-      this.title, this.subtitle, this.description, this.imagePath);
+      this.title, this.apirelease, this.description, this.imagePath);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,10 @@ class TitleDetail extends StatelessWidget {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SubtitleSection(subtitle),
+                releaseSection(
+                  release: '',
+                  apirelease: apirelease,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

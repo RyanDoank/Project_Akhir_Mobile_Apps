@@ -1,12 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:project_akhir_mobile_apps/api/user/user_model.dart';
-import 'package:project_akhir_mobile_apps/api/user/user_service.dart';
+import 'package:project_akhir_mobile_apps/api/movie/Movie_Response.dart';
+import 'package:project_akhir_mobile_apps/api/movie/Movie_Response_Model.dart';
 import 'package:project_akhir_mobile_apps/ui/pages/detail_page.dart';
+import 'package:project_akhir_mobile_apps/ui/widget/wide_image.dart';
 import 'package:project_akhir_mobile_apps/ui/widget/section_image.dart';
-import 'package:project_akhir_mobile_apps/ui/widget/subtitile_widget.dart';
+import 'package:project_akhir_mobile_apps/ui/widget/Section_Release.dart';
 import 'package:project_akhir_mobile_apps/ui/widget/title_widget.dart';
 
 class ListPage extends StatefulWidget {
@@ -17,38 +15,7 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> {
-  UserResponseModel? _userlist;
-
-  static Result userWhenNull = new Result(
-      gender: "gender",
-      name: Name(title: "title", first: "first", last: "last"),
-      location: Location(
-        street: Street(number: 0, name: "name"),
-        city: "city",
-        state: "state",
-        country: "country",
-        postcode: "postcode",
-        coordinates: Coordinates(latitude: "latitude", longitude: "longitude"),
-        timezone: Timezone(offset: "offset", description: "description"),
-      ),
-      email: "email",
-      login: Login(
-        uuid: "uuid",
-        username: "username",
-        password: "password",
-        salt: "salt",
-        md5: "md5",
-        sha1: "sha1",
-        sha256: "sha256",
-      ),
-      dob: Dob(date: DateTime(2002), age: 9),
-      registered: Dob(date: DateTime(2002), age: 9),
-      phone: "phone",
-      cell: "cell",
-      id: Id(name: "name", value: "value"),
-      picture:
-          Picture(large: "large", medium: "medium", thumbnail: "thumbnail"),
-      nat: "nat");
+  MovieResponseModel? _movieservice;
 
   @override
   void initState() {
@@ -58,13 +25,13 @@ class _ListPageState extends State<ListPage> {
       (_) async {
         // do something
         print("Call API User");
-        var userservice = await UserService().getUser();
+        var movieservice = await MovieResponse().getUser();
         setState(() {
-          _userlist = userservice;
+          _movieservice = movieservice;
         });
         print(
-          _userlist != null
-              ? _userlist!.results[0].name.first
+          _movieservice != null
+              ? _movieservice!.results[0].title
               : "Failed Call API",
         );
       },
@@ -73,43 +40,67 @@ class _ListPageState extends State<ListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-        itemCount: _userlist!.results.length,
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        leading: Center(
+          child: IconButton(
+            onPressed: () {
+              print("back to page");
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => ListPage()));
+            },
+            icon: Icon(Icons.person),
+          ),
+        ),
+      ),
+      body: ListView.builder(
+        itemCount: _movieservice != null ? _movieservice!.results.length : 0,
         itemBuilder: (BuildContext context, int index) => Card(
           child: ListTile(
-            leading: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 5),
-                  child: ImageSection(
-                    _userlist != null
-                        ? _userlist!.results[index].picture.large
-                        : "https://m.media-amazon.com/images/M/MV5BZmMxNGE0YjEtYTVkMC00ZGVjLWI3OTEtODY0N2I0NGU0ZjQ0XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg",
-                  ),
-                  height: 45,
-                ),
-              ],
-            ),
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                TitleSection(
-                  _userlist != null
-                      ? _userlist!.results[index].name.first
-                      : "title",
+                WideImage(
+                  _movieservice != null
+                      ? _movieservice!.results[index].backdropPath
+                      : "https://d3aa3603f5de3f81cb9fdaa5c591a84d5723e3cb.hosting4cdn.com/wp-content/uploads/2020/11/404-poster-not-found-CG17701-1.png",
                 ),
-                SizedBox(width: 20),
-                SubtitleSection(_userlist != null
-                    ? _userlist!.results[index].email
-                    : "subtitle"),
+              ],
+            ),
+            subtitle: Row(
+              children: [
+                Padding(padding: EdgeInsets.only(top: 100)),
+                ImageSection(
+                  _movieservice != null
+                      ? _movieservice!.results[index].posterPath
+                      : "https://d3aa3603f5de3f81cb9fdaa5c591a84d5723e3cb.hosting4cdn.com/wp-content/uploads/2020/11/404-poster-not-found-CG17701-1.png",
+                ),
+                
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TitleSection(
+                      _movieservice != null
+                          ? _movieservice!.results[index].title
+                          : "title not found",
+                    ),
+                    SizedBox(width: 20),
+                    releaseSection(
+                      release: "Release date ",
+                      apirelease: _movieservice != null
+                          ? _movieservice!.results[index].releaseDate.toString()
+                          : "release not found",
+                    ),
+                  ],
+                ),
               ],
             ),
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => DetailPage(
-                    userDetail: _userlist!.results[index],
+                    moviesdetail: _movieservice!.results[index],
                   ),
                 ),
               );
