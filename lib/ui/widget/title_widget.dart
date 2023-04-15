@@ -11,7 +11,6 @@ class TitleSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
-      width: double.infinity,
       // color: Colors.red,
       child:
           // AutoSizeText(
@@ -22,6 +21,7 @@ class TitleSection extends StatelessWidget {
           //   maxLines: 3,
           // ),
           Text(
+        // overflow: TextOverflow.ellipsis,
         title,
         style: TextStyle(
           fontSize: 20,
